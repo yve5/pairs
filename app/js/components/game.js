@@ -3,25 +3,6 @@
 var app = angular.module('app');
 
 
-app.controller('home', ['$scope', '$http',
-  function (scope, http) {
-
-    scope.animation = function () {
-
-      // requestAnimationFrame(scope.animation());
-
-      scope.bunny.rotation += 0.01;
-
-
-      scope.renderer.render(scope.stage);
-
-    }
-
-  }]);
-
-
-
-
 app.directive('game', ['$timeout', function ($timeout) {
   return {
     restrict: 'ACE',
@@ -29,58 +10,61 @@ app.directive('game', ['$timeout', function ($timeout) {
     templateUrl: 'html/game.html',
     link: function (scope, elm, attrs, ngModel) {
 
-      // You can use either `new PIXI.WebGLRenderer`, `new PIXI.CanvasRenderer`, or `PIXI.autoDetectRenderer`
-      // which will try to choose the best renderer for the environment you are in.
-
-      scope.renderer = new PIXI.autoDetectRenderer(800, 600);
-      // var g_renderer = new PIXI.autoDetectRenderer(800, 600); 
-      elm.html(scope.renderer.view);
+      var renderer, stage, bunny;
+      
 
 
-      scope.stage = new PIXI.Container();
+      scope.init = function() {
+        // You can use either `new PIXI.WebGLRenderer`, `new PIXI.CanvasRenderer`, or `PIXI.autoDetectRenderer`
+        // which will try to choose the best renderer for the environment you are in.
+        renderer = new PIXI.autoDetectRenderer(800, 600);
 
-      scope.bunny = null;
+        // The renderer will create a canvas element for you that you can then insert into the DOM.
+        elm.html(renderer.view);
 
+        // You need to create a root container that will hold the scene you want to draw.
+        stage = new PIXI.Container();
 
-      PIXI.loader.add('bunny', 'img/bunny.png').load(function(loader, resources) {
-
-        scope.bunny = new PIXI.Sprite(resources.bunny.texture);
-
-        scope.bunny.position.x = 400;
-        scope.bunny.position.y = 300;
-
-        scope.bunny.scale.x = 2;
-        scope.bunny.scale.y = 2;
-
-        scope.stage.addChild(scope.bunny);
-
-        // g_animate();
-
-        scope.animation();
-
-      });
+        // Declare a global variable for our sprite so that the animate function can access it.
+        bunny = null;
 
 
+        PIXI.loader.add('bunny', 'img/bunny.png').load(function(loader, resources) {
+          bunny = new PIXI.Sprite(resources.bunny.texture);
+
+          bunny.position.x = 400;
+          bunny.position.y = 300;
+
+          bunny.scale.x = 2;
+          bunny.scale.y = 2;
+
+          stage.addChild(bunny);
+
+          scope.animate();
+        });
+
+      };
 
 
+      scope.animate = function() {
+        // start the timer for the next animation loop
+        // requestAnimationFrame(scope.animate);
 
-      // ngModel.$setViewValue(elm.data('DateTimePicker').date());
-
-      // elm.on('dp.change', function (event) {
-      //   // if(!scope.$$phase) {}
-      //   $timeout(function() {
-      //     scope.$apply(function () {
-      //       ngModel.$setViewValue(event.date);
-      //     });
-      //   });
-      // });
-
-      // ngModel.$render = function () {
-      //   elm.data('DateTimePicker').date(ngModel.$viewValue);
-      // };
+        scope.render();
+      }
 
 
+      scope.render = function() {
+        // each frame we spin the bunny around a bit
+        // bunny.rotation += 0.01;
 
+        // this is the main render call that makes pixi draw your container and its children.
+        renderer.render(stage);
+      }
+
+
+      scope.init();
+      scope.animate();
 
     }
   };
@@ -88,18 +72,6 @@ app.directive('game', ['$timeout', function ($timeout) {
 
 
 
-
-
-function g_animate() {
-    // start the timer for the next animation loop
-    requestAnimationFrame(g_animate);
-
-    // each frame we spin the bunny around a bit
-    // scope.bunny.rotation += 0.01;
-
-    // this is the main render call that makes pixi draw your container and its children.
-    // g_renderer.render(stage);
-}
 
 
 
@@ -144,8 +116,6 @@ function g_animate() {
 //     // kick off the animation loop (defined below)
 //     animate();
 // });
-
-
 
 
 
