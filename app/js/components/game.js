@@ -9,51 +9,86 @@ app.directive('game', ['$timeout', function ($timeout) {
     templateUrl: 'html/game.html',
     link: function (scope, elm, attrs, ngModel) {
 
-      scope.init = function() {
-        // You can use either `new PIXI.WebGLRenderer`, `new PIXI.CanvasRenderer`, or `PIXI.autoDetectRenderer`
-        // which will try to choose the best renderer for the environment you are in.
-        scope.renderer = new PIXI.autoDetectRenderer(800, 600);
+      scope.init = function () {
+        scope.renderer = new PIXI.autoDetectRenderer(640, 480, {'transparent': false});
+        scope.renderer.backgroundColor = 0x00BB00;
 
-        // The renderer will create a canvas element for you that you can then insert into the DOM.
         elm.html(scope.renderer.view);
 
-        // You need to create a root container that will hold the scene you want to draw.
         scope.stage = new PIXI.Container();
 
-        // Declare a global variable for our sprite so that the animate function can access it.
-        scope.bunny = null;
-
-
-        PIXI.loader.add('bunny', 'img/bunny.png').load(function(loader, resources) {
-          scope.bunny = new PIXI.Sprite(resources.bunny.texture);
-
-          scope.bunny.position.x = 400;
-          scope.bunny.position.y = 300;
-
-          scope.bunny.scale.x = 2;
-          scope.bunny.scale.y = 2;
-
-          scope.stage.addChild(scope.bunny);
-
-          scope.animate();
-        });
-
+        PIXI.loader.add('tiles', 'img/tiles.json').load(scope.loadResources);
       };
 
 
-      scope.animate = function() {
-        // start the timer for the next animation loop
-        requestAnimationFrame(scope.animate);
+      scope.loadResources = function (loader, resources) {
+        // choose 24 random tile images
+        var chosenTiles = new Array();
+        var iii = 0, jjj, kkk;
 
-        scope.render();
+        while (iii < 48) {
+          var randomValue = _.random(1, 44);
+
+          if (_.indexOf(chosenTiles, randomValue) === -1){
+            chosenTiles.push(randomValue, randomValue);
+            iii += 2;
+          }
+        }
+
+         
+        // shuffle the chosen tiles
+        for (iii=0; iii<96; iii++){
+          var from  = _.random(0, 47);
+          var to    = _.random(0, 47);
+          var tmp   = chosenTiles[from];
+
+          chosenTiles[from] = chosenTiles[to];
+          chosenTiles[to]   = tmp;
+        }
+
+
+        // place down tiles
+        for(iii=0; iii<8; iii++) {
+          for(jjj=0; jjj<6; jjj++) {
+
+            kkk = iii * 6 + jjj;
+
+            var tile = new PIXI.Sprite(resources['tiles'].textures[chosenTiles[kkk]]);
+
+            tile.buttonMode = true;
+            tile.interactive = true;
+            tile.isSelected = false;
+            // tile.tint = 0x000000;
+            tile.alpha = 0.5;
+
+            tile.position.x = 7 + iii * 80;
+            tile.position.y = 7 + jjj * 80;
+
+            scope.stage.addChild(tile);
+          }
+        }
+
+
+
+        // var aze = new PIXI.Sprite(
+        //   resources["tiles"].textures[1]
+        // );
+
+        // scope.stage.addChild(aze);
+
+        scope.animate();
       }
 
 
-      scope.render = function() {
-        // each frame we spin the bunny around a bit
-        scope.bunny.rotation += 0.01;
 
-        // this is the main render call that makes pixi draw your container and its children.
+
+      scope.animate = function () {
+        // requestAnimationFrame(scope.animate);
+        scope.render();
+      }
+
+      scope.render = function () {
+        // scope.tiles.rotation += 0.01;
         scope.renderer.render(scope.stage);
       }
 
@@ -62,3 +97,154 @@ app.directive('game', ['$timeout', function ($timeout) {
     }
   };
 }]);
+
+
+
+
+
+
+var definition = function () {
+  // first tile picked up by the player
+  var firstTile=null;
+
+  // second tile picked up by the player
+  var secondTile=null;
+
+  // can the player pick up a tile?
+  var canPick=true;
+
+  // // create an new instance of a pixi stage with a grey background
+  // var stage = new PIXI.Stage(0x888888);
+
+  // // create a renderer instance width=640 height=480
+  // var renderer = PIXI.autoDetectRenderer(640,480);
+
+  // importing a texture atlas created with texturepacker
+  var tileAtlas = ["images.json"];
+
+  // create a new loader
+  var loader = new PIXI.AssetLoader(tileAtlas);
+
+  // create an empty container
+  var gameContainer = new PIXI.DisplayObjectContainer();
+
+  // add the container to the stage
+  stage.addChild(gameContainer);
+
+  // add the renderer view element to the DOM
+  document.body.appendChild(renderer.view);
+
+  // use callback
+  loader.onComplete = onTilesLoaded;
+
+  //begin load
+  loader.load();
+}
+
+
+
+
+
+function onTilesLoaded(){
+  // choose 24 random tile images
+  var chosenTiles=new Array();
+
+  // while(chosenTiles.length<48){
+  //   var candidate=Math.floor(Math.random()*44);
+  //   if(chosenTiles.indexOf(candidate)==-1){
+  //     chosenTiles.push(candidate,candidate)
+  //   }     
+  // }
+
+  // // shuffle the chosen tiles
+  // for(i=0;i<96;i++){
+  //   var from = Math.floor(Math.random()*48);
+  //   var to = Math.floor(Math.random()*48);
+  //   var tmp = chosenTiles[from];
+  //   chosenTiles[from]=chosenTiles[to];
+  //   chosenTiles[to]=tmp;
+  // }
+
+  // place down tiles
+  for(i=0;i<8;i++){
+    for(j=0;j<6;j++){
+      // new sprite
+      var tile = PIXI.Sprite.fromFrame(chosenTiles[i*6+j]);
+      // buttonmode+interactive = acts like a button
+      tile.buttonMode=true;
+      tile.interactive = true;
+      // is the tile selected?
+      tile.isSelected=false;
+      // set a tile value
+      tile.theVal=chosenTiles[i*6+j]
+      // place the tile
+      tile.position.x = 7+i*80;
+      tile.position.y = 7+  j*80;
+      // paint tile black
+      tile.tint = 0x000000;
+      // set it a bit transparent (it will look grey)
+      tile.alpha=0.5;
+      // add the tile
+      gameContainer.addChild(tile);
+      // mouse-touch listener
+      tile.mousedown = tile.touchstart = function(data) {
+        // can I pick a tile?
+        if(canPick) {
+             // is the tile already selected?
+          if(!this.isSelected){
+            // set the tile to selected
+            this.isSelected = true;
+            // show the tile
+                this.tint = 0xffffff;
+            this.alpha = 1;
+            // is it the first tile we uncover?
+            if(firstTile==null){
+              firstTile=this
+            }
+            // this is the second tile
+            else{
+              secondTile=this
+              // can't pick anymore
+              canPick=false;
+              // did we pick the same tiles?
+              if(firstTile.theVal==secondTile.theVal){
+                // wait a second then remove the tiles and make the player able to pick again
+                setTimeout(function(){
+                  gameContainer.removeChild(firstTile);
+                  gameContainer.removeChild(secondTile);
+                  firstTile=null;
+                  secondTile=null;
+                  canPick=true;
+                },1000);
+              }
+              // we picked different tiles
+              else{
+                // wait a second then cover the tiles and make the player able to pick again
+                setTimeout(function(){
+                  firstTile.isSelected=false
+                  secondTile.isSelected=false
+                  firstTile.tint = 0x000000;
+                  secondTile.tint = 0x000000;
+                  firstTile.alpha=0.5;
+                  secondTile.alpha=0.5;
+                  firstTile=null;
+                  secondTile=null;
+                  canPick=true  
+                },1000);
+              }
+            } 
+          }
+        }
+      }
+    }
+  } 
+  requestAnimFrame(animate);
+}
+
+
+function animate() {
+  requestAnimFrame(animate);
+  renderer.render(stage);
+}
+
+
