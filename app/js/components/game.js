@@ -26,8 +26,9 @@ app.directive('game', ['$timeout', function ($timeout) {
         var chosenTiles = new Array();
         var iii = 0, jjj, kkk;
 
+
         while (iii < 48) {
-          var randomValue = _.random(1, 44);
+          var randomValue = _.random(0, 43);
 
           if (_.indexOf(chosenTiles, randomValue) === -1){
             chosenTiles.push(randomValue, randomValue);
@@ -55,11 +56,11 @@ app.directive('game', ['$timeout', function ($timeout) {
 
             var tile = new PIXI.Sprite(resources['tiles'].textures[chosenTiles[kkk]]);
 
-            tile.buttonMode = true;
-            tile.interactive = true;
-            tile.isSelected = false;
+            tile.buttonMode   = true;
+            tile.interactive  = true;
+            tile.isSelected   = false;
             // tile.tint = 0x000000;
-            tile.alpha = 0.5;
+            tile.alpha        = 0.5;
 
             tile.position.x = 7 + iii * 80;
             tile.position.y = 7 + jjj * 80;
@@ -67,15 +68,7 @@ app.directive('game', ['$timeout', function ($timeout) {
             scope.stage.addChild(tile);
           }
         }
-
-
-
-        // var aze = new PIXI.Sprite(
-        //   resources["tiles"].textures[1]
-        // );
-
-        // scope.stage.addChild(aze);
-
+        
         scope.animate();
       }
 
