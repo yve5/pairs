@@ -16,7 +16,7 @@ app.directive('game', ['$timeout', function ($timeout) {
         scope.mfTimeout   = 1000;
 
         scope.renderer = new PIXI.autoDetectRenderer(640, 480, {'transparent': false});
-        scope.renderer.backgroundColor = 0x00BB00;
+        scope.renderer.backgroundColor = 0xB9F6CA;
 
         elm.html(scope.renderer.view);
 
@@ -54,9 +54,8 @@ app.directive('game', ['$timeout', function ($timeout) {
 
 
         // place down tiles
-        for(iii=0; iii<8; iii++) {
-          for(jjj=0; jjj<6; jjj++) {
-
+        for (iii = 0; iii < 8; iii++) {
+          for (jjj = 0; jjj < 6; jjj++) {
             kkk = iii * 6 + jjj;
 
             var tile = new PIXI.Sprite(resources['tiles'].textures[chosenTiles[kkk]]);
@@ -64,12 +63,11 @@ app.directive('game', ['$timeout', function ($timeout) {
             tile.buttonMode   = true;
             tile.interactive  = true;
             tile.isSelected   = false;
-            // tile.tint = 0x000000;
+            // tile.tint         = 0x000000;
             tile.alpha        = 0.5;
             tile.mfVal        = chosenTiles[kkk]
-
-            tile.position.x = 7 + iii * 80;
-            tile.position.y = 7 + jjj * 80;
+            tile.position.x   = 7 + iii * 80;
+            tile.position.y   = 7 + jjj * 80;
 
             scope.stage.addChild(tile);
 
@@ -79,80 +77,86 @@ app.directive('game', ['$timeout', function ($timeout) {
               if (scope.canPick) {
                 if (!that.isSelected) {
                   that.isSelected = true;
-                  that.tint       = 0xffffff;
+                  // tile.tint       = 0xffffff;
                   that.alpha      = 1;
 
-                  if (scope.firstTile === null) {
-                    scope.firstTile = that;
 
-                    console.log('wxc');
-                  }
-                  else {
-                    scope.secondTile  = that;
-                    scope.canPick     = false;
-
-                    console.log('sdf');
-
-                    if (scope.firstTile.mfVal === scope.secondTile.mfVal) {
+                  console.log(that.alpha);
 
 
-                      setTimeout(function () {
-
-                        console.log('aze');
-
-                        scope.stage.removeChild(scope.firstTile);
-                        scope.stage.removeChild(scope.secondTile);
-
-                        scope.firstTile = null;
-                        scope.secondTile = null;
-
-                        scope.canPick = true;
-
-                        // gameContainer.removeChild(firstTile);
-                        // gameContainer.removeChild(secondTile);
-                        // firstTile=null;
-                        // secondTile=null;
-                        // canPick=true;
-
-                      }, scope.mfTimeout);
-
-                    }
-                    else {
-
-                      setTimeout(function () {
-
-                        console.log('qsd');
 
 
-                        scope.firstTile.isSelected = false
-                        scope.secondTile.isSelected = false
+                  // if (scope.firstTile === null) {
+                  //   scope.firstTile = that;
 
-                        scope.firstTile.tint = 0x000000; 
-                        scope.secondTile.tint = 0x000000;
+                  //   console.log('wxc');
+                  // }
+                  // else {
+                  //   scope.secondTile  = that;
+                  //   scope.canPick     = false;
+
+                  //   console.log('sdf');
+
+                  //   if (scope.firstTile.mfVal === scope.secondTile.mfVal) {
+
+
+                  //     setTimeout(function () {
+
+                  //       console.log('aze');
+
+                  //       scope.stage.removeChild(scope.firstTile);
+                  //       scope.stage.removeChild(scope.secondTile);
+
+                  //       scope.firstTile = null;
+                  //       scope.secondTile = null;
+
+                  //       scope.canPick = true;
+
+                  //       // gameContainer.removeChild(firstTile);
+                  //       // gameContainer.removeChild(secondTile);
+                  //       // firstTile=null;
+                  //       // secondTile=null;
+                  //       // canPick=true;
+
+                  //     }, scope.mfTimeout);
+
+                  //   }
+                  //   else {
+
+                  //     setTimeout(function () {
+
+                  //       console.log('qsd');
+
+
+                  //       scope.firstTile.isSelected = false
+                  //       scope.secondTile.isSelected = false
+
+                  //       scope.firstTile.tint = 0x000000; 
+                  //       scope.secondTile.tint = 0x000000;
                         
-                        scope.firstTile.alpha = 0.5;
-                        scope.secondTile.alpha = 0.5;
+                  //       scope.firstTile.alpha = 0.5;
+                  //       scope.secondTile.alpha = 0.5;
 
-                        scope.firstTile = null;
-                        scope.secondTile = null;
+                  //       scope.firstTile = null;
+                  //       scope.secondTile = null;
 
-                        scope.canPick = true;
+                  //       scope.canPick = true;
 
-                        // firstTile.isSelected=false
-                        // secondTile.isSelected=false
-                        // firstTile.tint = 0x000000;
-                        // secondTile.tint = 0x000000;
-                        // firstTile.alpha=0.5;
-                        // secondTile.alpha=0.5;
-                        // firstTile=null;
-                        // secondTile=null;
-                        // canPick=true;
+                  //       // firstTile.isSelected=false
+                  //       // secondTile.isSelected=false
+                  //       // firstTile.tint = 0x000000;
+                  //       // secondTile.tint = 0x000000;
+                  //       // firstTile.alpha=0.5;
+                  //       // secondTile.alpha=0.5;
+                  //       // firstTile=null;
+                  //       // secondTile=null;
+                  //       // canPick=true;
 
-                      }, scope.mfTimeout);
+                  //     }, scope.mfTimeout);
 
-                    }
+                  //   }
 
-                  }
+                  // }
 
                 }
               }
@@ -330,5 +334,3 @@ function animate() {
   requestAnimFrame(animate);
   renderer.render(stage);
 }
-
-
