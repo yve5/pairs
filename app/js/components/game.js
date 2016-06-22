@@ -1,4 +1,6 @@
 'use strict';
+// (function() {})();
+
 
 var app = angular.module('app');
 
@@ -8,6 +10,8 @@ app.directive('game', ['$timeout', function ($timeout) {
     require: 'ngModel',
     templateUrl: 'html/game.html',
     link: function (scope, elm, attrs, ngModel) {
+
+      var test;
 
       scope.init = function () {
         scope.firstTile   = null;
@@ -41,7 +45,7 @@ app.directive('game', ['$timeout', function ($timeout) {
           }
         }
 
-         
+
         // shuffle the chosen tiles
         for (iii=0; iii<96; iii++){
           var from  = _.random(0, 47);
@@ -53,130 +57,109 @@ app.directive('game', ['$timeout', function ($timeout) {
         }
 
 
-        // place down tiles
-        for (iii = 0; iii < 8; iii++) {
-          for (jjj = 0; jjj < 6; jjj++) {
-            kkk = iii * 6 + jjj;
+        // // place down tiles
+        // for (iii = 0; iii < 8; iii++) {
+        //   for (jjj = 0; jjj < 6; jjj++) {
+        //     kkk = iii * 6 + jjj;
 
-            var tile = new PIXI.Sprite(resources['tiles'].textures[chosenTiles[kkk]]);
+        //     var tile = new PIXI.Sprite(resources['tiles'].textures[chosenTiles[kkk]]);
 
-            tile.buttonMode   = true;
-            tile.interactive  = true;
-            tile.isSelected   = false;
-            // tile.tint         = 0x000000;
-            tile.alpha        = 0.5;
-            tile.mfVal        = chosenTiles[kkk]
-            tile.position.x   = 7 + iii * 80;
-            tile.position.y   = 7 + jjj * 80;
+        //     tile.buttonMode   = true;
+        //     tile.interactive  = true;
+        //     tile.isSelected   = false;
+        //     // tile.tint         = 0x000000;
+        //     tile.alpha        = 0.5;
+        //     // tile.mfVal        = chosenTiles[kkk]
+        //     tile.position.x   = 7 + iii * 80;
+        //     tile.position.y   = 7 + jjj * 80;
 
-            scope.stage.addChild(tile);
+        //     tile.innerId = kkk;
 
-            tile.mousedown = tile.touchstart = function () {
-              var that = this;
+        //     // tile.touchstart = 
 
-              if (scope.canPick) {
-                if (!that.isSelected) {
-                  that.isSelected = true;
-                  // tile.tint       = 0xffffff;
-                  that.alpha      = 1;
+        //     tile.mousedown = function (event) {
+        //       var id = event.target.innerId;
 
+        //       console.log('Hello', 'World', '!');
 
-                  console.log(that.alpha);
+        //       this.alpha = 1;
 
+        //       // if (_.isUndefined(id)) {
+        //       //   console.log('error', 1);
+        //       // }
+        //       // else {
+        //         // scope.interact(id);
+        //       // }
 
-
-
-                  // if (scope.firstTile === null) {
-                  //   scope.firstTile = that;
-
-                  //   console.log('wxc');
-                  // }
-                  // else {
-                  //   scope.secondTile  = that;
-                  //   scope.canPick     = false;
-
-                  //   console.log('sdf');
-
-                  //   if (scope.firstTile.mfVal === scope.secondTile.mfVal) {
+        //       // scope.stage.children[12].alpha = 1;
+        //     };
 
 
-                  //     setTimeout(function () {
-
-                  //       console.log('aze');
-
-                  //       scope.stage.removeChild(scope.firstTile);
-                  //       scope.stage.removeChild(scope.secondTile);
-
-                  //       scope.firstTile = null;
-                  //       scope.secondTile = null;
-
-                  //       scope.canPick = true;
-
-                  //       // gameContainer.removeChild(firstTile);
-                  //       // gameContainer.removeChild(secondTile);
-                  //       // firstTile=null;
-                  //       // secondTile=null;
-                  //       // canPick=true;
-
-                  //     }, scope.mfTimeout);
-
-                  //   }
-                  //   else {
-
-                  //     setTimeout(function () {
-
-                  //       console.log('qsd');
+        //     scope.stage.addChild(tile);
+        //   }
+        // }
 
 
-                  //       scope.firstTile.isSelected = false
-                  //       scope.secondTile.isSelected = false
+        test = new PIXI.Sprite(resources['tiles'].textures[chosenTiles[0]]);
 
-                  //       scope.firstTile.tint = 0x000000; 
-                  //       scope.secondTile.tint = 0x000000;
-                        
-                  //       scope.firstTile.alpha = 0.5;
-                  //       scope.secondTile.alpha = 0.5;
 
-                  //       scope.firstTile = null;
-                  //       scope.secondTile = null;
+        test.buttonMode  = true;
+        test.interactive = true;
+        test.alpha       = 0.3;
 
-                  //       scope.canPick = true;
 
-                  //       // firstTile.isSelected=false
-                  //       // secondTile.isSelected=false
-                  //       // firstTile.tint = 0x000000;
-                  //       // secondTile.tint = 0x000000;
-                  //       // firstTile.alpha=0.5;
-                  //       // secondTile.alpha=0.5;
-                  //       // firstTile=null;
-                  //       // secondTile=null;
-                  //       // canPick=true;
-
-                  //     }, scope.mfTimeout);
-
-                  //   }
-
-                  // }
-
-                }
-              }
-            }
-          }
+        test.mousedown = function (event) {
+          console.log('mousedown');
+          test.alpha = 1;
         }
-        
+
+        // console.log('debug', test.mousedown);
+
+        // test.mousedown = scope.qsd;
+
+
+
+        scope.stage.addChild(test);
+
+
+        // document.addEventListener('mousedown', scope.onDocumentMouseMove, false);
+
+
         scope.animate();
+
       }
 
 
+      scope.qsd = function (hello) {
+        console.log('qsd', hello);
+        test.alpha = 1;
+        hello.target.alpha = 1;
+      }
+
+
+      // scope.interact = function (id) {
+      //   var item = scope.stage.children[id];
+
+      //   if (_.isUndefined(item)) {
+      //     console.log('error', 2);
+      //     return false;
+      //   }
+
+      //   scope.stage.children[id].alpha = 1;
+      //   return true;
+      // }
 
 
       scope.animate = function () {
+        // scope.aze.alpha = 1;
+
         // requestAnimationFrame(scope.animate);
         scope.render();
       }
 
       scope.render = function () {
         // scope.tiles.rotation += 0.01;
+
         scope.renderer.render(scope.stage);
       }
 
@@ -334,3 +317,114 @@ function animate() {
   requestAnimFrame(animate);
   renderer.render(stage);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//   function () {
+          //     var that = this;
+
+          //     // console.log('tile 2', scope.tiles[kkk]);
+          //     console.log('tile 3', that);
+
+
+          //     scope.tiles[kkk].alpha = 1.0;
+
+          //     scope.tiles[kkk].position.y = 0;
+
+
+
+          //     // if (scope.canPick) {
+          //     //   if (!that.isSelected) {
+          //     //     that.isSelected = true;
+          //     //     // tile.tint       = 0xffffff;
+          //     //     // tile.alpha      = 1.0;
+
+
+          //     //     // console.log(tile.alpha);
+
+
+
+          //     //     // if (scope.firstTile === null) {
+          //     //     //   scope.firstTile = that;
+
+          //     //     //   console.log('wxc');
+          //     //     // }
+          //     //     // else {
+          //     //     //   scope.secondTile  = that;
+          //     //     //   scope.canPick     = false;
+
+          //     //     //   console.log('sdf');
+
+          //     //     //   if (scope.firstTile.mfVal === scope.secondTile.mfVal) {
+
+
+          //     //     //     setTimeout(function () {
+
+          //     //     //       console.log('aze');
+
+          //     //     //       scope.stage.removeChild(scope.firstTile);
+          //     //     //       scope.stage.removeChild(scope.secondTile);
+
+          //     //     //       scope.firstTile = null;
+          //     //     //       scope.secondTile = null;
+
+          //     //     //       scope.canPick = true;
+
+          //     //     //       // gameContainer.removeChild(firstTile);
+          //     //     //       // gameContainer.removeChild(secondTile);
+          //     //     //       // firstTile=null;
+          //     //     //       // secondTile=null;
+          //     //     //       // canPick=true;
+
+          //     //     //     }, scope.mfTimeout);
+
+          //     //     //   }
+          //     //     //   else {
+
+          //     //     //     setTimeout(function () {
+
+          //     //     //       console.log('qsd');
+
+
+          //     //     //       scope.firstTile.isSelected = false
+          //     //     //       scope.secondTile.isSelected = false
+
+          //     //     //       scope.firstTile.tint = 0x000000; 
+          //     //     //       scope.secondTile.tint = 0x000000;
+                        
+          //     //     //       scope.firstTile.alpha = 0.5;
+          //     //     //       scope.secondTile.alpha = 0.5;
+
+          //     //     //       scope.firstTile = null;
+          //     //     //       scope.secondTile = null;
+
+          //     //     //       scope.canPick = true;
+
+          //     //     //       // firstTile.isSelected=false
+          //     //     //       // secondTile.isSelected=false
+          //     //     //       // firstTile.tint = 0x000000;
+          //     //     //       // secondTile.tint = 0x000000;
+          //     //     //       // firstTile.alpha=0.5;
+          //     //     //       // secondTile.alpha=0.5;
+          //     //     //       // firstTile=null;
+          //     //     //       // secondTile=null;
+          //     //     //       // canPick=true;
+
+          //     //     //     }, scope.mfTimeout);
+
+          //     //     //   }
+
+          //     //     // }
+
+          //     //   }
+          //     // }
+          //   }
