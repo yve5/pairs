@@ -2,24 +2,124 @@
 /* CSS for SASS work */
 
 body {
-  font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
-  padding: 0;
+	font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
 }
 
-.logo-height {
-  margin-top: 4px;
-  height: 75px;
+
+// * {
+// 	line-height: 1.2;
+// 	margin: 0;
+// }
+
+html {
+	color: #888;
+	display: table;
+	font-family: sans-serif;
+	height: 100%;
+	text-align: center;
+	width: 100%;
+}
+body {
+	display: table-cell;
+	vertical-align: middle;
+	margin: 2em auto;
+}
+h1 {
+	color: #555;
+	font-size: 2em;
+	font-weight: 400;
+}
+p {
+	margin: 0 auto;
+	width: 280px;
+}
+@media only screen and (max-width: 280px) {
+	body, p {
+		width: 95%;
+	}
+	h1 {
+		font-size: 1.5em;
+		margin: 0 0 0.3em;
+	}
 }
 
-.red-text {
-  font-weight: bold;
-  color: red;
+
+// material design icons
+$material-design-path: '../bower_components/material-design-icons-dist/';
+$material-design-name: 'MaterialIcons-Regular';
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('#{$material-design-path}#{$material-design-name}.eot'); // For IE6-8
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('#{$material-design-path}#{$material-design-name}.woff2') format('woff2'),
+    url('#{$material-design-path}#{$material-design-name}.woff') format('woff'),
+    url('#{$material-design-path}#{$material-design-name}.ttf') format('truetype');
 }
 
-.buffer-top {
-	margin-top: 8px;
-}
+.material-icons {
+  font-family: 'Material Icons';
+  display: inline-block;
+  font-weight: normal;
+  font-style: normal;
+  position: relative;
+  // font-size: 24px;
+  font-size: 1.4em;
+  line-height: 1;
+  height: 1em;
+  width: 1em;
+  top: 1px;
+  
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
 
-.buffer-bottom {
-	margin-bottom: 50px;
+  // Support for all WebKit browsers.
+  -webkit-font-smoothing: antialiased;
+
+  // Support for Safari and Chrome.
+  text-rendering: optimizeLegibility;
+
+  // Support for Firefox.
+  -moz-osx-font-smoothing: grayscale;
+
+  // Support for IE.
+  font-feature-settings: 'liga';
+
+  // Rules for sizing the icon.
+  &.md-18 {
+    font-size: 18px;
+  }
+  &.md-24 {
+    font-size: 24px;
+  }
+  &.md-36 {
+    font-size: 36px;
+  }
+  &.md-48 {
+    font-size: 48px;
+  }
+
+  // Rules for using icons as black on a light background.
+  &.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+
+    &.md-inactive {
+      color: rgba(0, 0, 0, 0.26);
+    }
+  }
+
+  // Rules for using icons as white on a dark background.
+  &.md-light {
+    color: rgba(255, 255, 255, 1);
+
+    &.md-inactive {
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
 }

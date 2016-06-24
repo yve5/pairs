@@ -1,23 +1,102 @@
 /* CSS for SASS work */
 body {
   font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
-  padding: 0;
 }
 
-.logo-height {
-  margin-top: 4px;
-  height: 75px;
+html {
+  color: #888;
+  display: table;
+  font-family: sans-serif;
+  height: 100%;
+  text-align: center;
+  width: 100%;
 }
 
-.red-text {
-  font-weight: bold;
-  color: red;
+body {
+  display: table-cell;
+  vertical-align: middle;
+  margin: 2em auto;
 }
 
-.buffer-top {
-  margin-top: 8px;
+h1 {
+  color: #555;
+  font-size: 2em;
+  font-weight: 400;
 }
 
-.buffer-bottom {
-  margin-bottom: 50px;
+p {
+  margin: 0 auto;
+  width: 280px;
+}
+
+@media only screen and (max-width: 280px) {
+  body, p {
+    width: 95%;
+  }
+  h1 {
+    font-size: 1.5em;
+    margin: 0 0 0.3em;
+  }
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../bower_components/material-design-icons-dist/MaterialIcons-Regular.eot");
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url("../bower_components/material-design-icons-dist/MaterialIcons-Regular.woff2") format("woff2"), url("../bower_components/material-design-icons-dist/MaterialIcons-Regular.woff") format("woff"), url("../bower_components/material-design-icons-dist/MaterialIcons-Regular.ttf") format("truetype");
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  display: inline-block;
+  font-weight: normal;
+  font-style: normal;
+  position: relative;
+  font-size: 1.4em;
+  line-height: 1;
+  height: 1em;
+  width: 1em;
+  top: 1px;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.material-icons.md-light {
+  color: white;
+}
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
 }

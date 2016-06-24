@@ -1,8 +1,6 @@
 'use strict';
 
-
 var app = angular.module('app');
-
 
 app.directive('game', ['$timeout', function ($timeout) {
   return {
