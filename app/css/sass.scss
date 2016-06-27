@@ -1,47 +1,75 @@
 
 /* CSS for SASS work */
 
-body {
-	font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
-}
-
-
-// * {
-// 	line-height: 1.2;
-// 	margin: 0;
-// }
-
 html {
-	color: #888;
-	display: table;
-	font-family: sans-serif;
-	height: 100%;
-	text-align: center;
-	width: 100%;
+  font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
+  // background: hsl(0, 100%, 80%);
+  text-align: center;
+  display: table;
+  // color: #888;
+  height: 100%;
+  width: 100%;
+
+  body {
+    vertical-align: middle;
+    display: table-cell;
+
+    p.browsehappy {
+      position: absolute;
+      width: 100%;
+      top: 0;
+
+      background: greenyellow;
+      padding: 0.5em 0;
+      color: black;
+      margin: 0;
+    }
+
+    // h1 {
+    //   color: #555; 
+    //   font-size: 2em;
+    //   font-weight: 400;
+
+    //   @media only screen and (max-width: 280px) {
+    //     color: red !important;
+    //   }
+
+    div.container {
+      $cellSize: 100px;
+      margin: auto;
+      width: $cellSize * 8;
+
+      div.play-area {
+        height: $cellSize * 6;
+        width: $cellSize * 8;
+
+        div.cell {
+          height: $cellSize;
+          width: $cellSize;
+          font-size: 3em;
+          float: left;
+
+          span.micons {
+            line-height: $cellSize;
+          }
+        }
+      }
+
+    }
+
+  }
 }
-body {
-	display: table-cell;
-	vertical-align: middle;
-	margin: 2em auto;
+
+
+.visible-print {
+  display: none !important;
+
+  @media print {
+    display: block !important;
+  }
 }
-h1 {
-	color: #555;
-	font-size: 2em;
-	font-weight: 400;
-}
-p {
-	margin: 0 auto;
-	width: 280px;
-}
-@media only screen and (max-width: 280px) {
-	body, p {
-		width: 95%;
-	}
-	h1 {
-		font-size: 1.5em;
-		margin: 0 0 0.3em;
-	}
-}
+
+
 
 
 // material design icons
@@ -60,7 +88,7 @@ $material-design-name: 'MaterialIcons-Regular';
     url('#{$material-design-path}#{$material-design-name}.ttf') format('truetype');
 }
 
-.material-icons {
+.micons {
   font-family: 'Material Icons';
   display: inline-block;
   font-weight: normal;
@@ -103,23 +131,5 @@ $material-design-name: 'MaterialIcons-Regular';
   }
   &.md-48 {
     font-size: 48px;
-  }
-
-  // Rules for using icons as black on a light background.
-  &.md-dark {
-    color: rgba(0, 0, 0, 0.54);
-
-    &.md-inactive {
-      color: rgba(0, 0, 0, 0.26);
-    }
-  }
-
-  // Rules for using icons as white on a dark background.
-  &.md-light {
-    color: rgba(255, 255, 255, 1);
-
-    &.md-inactive {
-      color: rgba(255, 255, 255, 0.3);
-    }
   }
 }
