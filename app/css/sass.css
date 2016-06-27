@@ -23,8 +23,14 @@ html body p.browsehappy {
 }
 
 html body div.container {
-  margin: auto;
   width: 800px;
+  margin: auto;
+}
+
+@media (max-width: 800px) {
+  html body div.container {
+    width: 320px;
+  }
 }
 
 html body div.container div.play-area {
@@ -32,15 +38,48 @@ html body div.container div.play-area {
   width: 800px;
 }
 
+@media (max-width: 800px) {
+  html body div.container div.play-area {
+    height: 960px;
+    width: 320px;
+  }
+}
+
 html body div.container div.play-area div.cell {
-  height: 100px;
-  width: 100px;
+  height: 92px;
+  width: 92px;
+  background: greenyellow;
+  margin: 4px;
+  border-radius: 8px;
   font-size: 3em;
   float: left;
+  transition: background 1000ms;
+}
+
+html body div.container div.play-area div.cell:hover {
+  background: orange;
+  transition: none;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  html body div.container div.play-area div.cell {
+    height: 72px;
+    width: 72px;
+    font-size: 2em;
+  }
 }
 
 html body div.container div.play-area div.cell span.micons {
-  line-height: 100px;
+  line-height: 92px;
+}
+
+@media (max-width: 800px) {
+  html body div.container div.play-area div.cell span.micons {
+    line-height: 72px;
+    height: 72px;
+    width: 72px;
+  }
 }
 
 .visible-print {
@@ -81,20 +120,4 @@ html body div.container div.play-area div.cell span.micons {
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga';
-}
-
-.micons.md-18 {
-  font-size: 18px;
-}
-
-.micons.md-24 {
-  font-size: 24px;
-}
-
-.micons.md-36 {
-  font-size: 36px;
-}
-
-.micons.md-48 {
-  font-size: 48px;
 }

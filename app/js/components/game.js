@@ -56,4 +56,8 @@ app.controller('game', ['$scope', '$http',
 	    {name:'beach_access'}
 	  ];
 
+	  scope.chooseTile = function () {
+	  	console.log('Hello', 'World');
+	  }
+
   }]);

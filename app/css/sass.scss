@@ -1,6 +1,8 @@
 
 /* CSS for SASS work */
 
+$screen-xs: 480px; // Small screen
+
 html {
   font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
   // background: hsl(0, 100%, 80%);
@@ -34,24 +36,63 @@ html {
     //     color: red !important;
     //   }
 
+    $cellSizeMin: 80px;
+    $cellSize: 100px;
+    $cellMargin: 4px;
+
+
     div.container {
-      $cellSize: 100px;
-      margin: auto;
       width: $cellSize * 8;
+      margin: auto;
+
+      @media (max-width: $cellSize * 8) {
+        width: $cellSizeMin * 4;
+      }
 
       div.play-area {
         height: $cellSize * 6;
         width: $cellSize * 8;
 
+        @media (max-width: $cellSize * 8) {
+          height: $cellSizeMin * 12;
+          width: $cellSizeMin * 4;
+        }
+
         div.cell {
-          height: $cellSize;
-          width: $cellSize;
+          height: $cellSize - ($cellMargin * 2);
+          width: $cellSize - ($cellMargin * 2);
+          background: greenyellow;
+          margin: $cellMargin;
+          border-radius: 8px;
           font-size: 3em;
           float: left;
 
-          span.micons {
-            line-height: $cellSize;
+          // box-shadow: 0 4px 6px -5px black;
+          transition: background 1000ms;
+
+          &:hover {
+            background: orange;
+            transition: none;
+            cursor: pointer;
           }
+
+          @media (max-width: $cellSize * 8) {
+            height: $cellSizeMin - ($cellMargin * 2);
+            width: $cellSizeMin - ($cellMargin * 2);
+            // box-shadow: none;
+            font-size: 2em;
+          }
+
+          span.micons {
+            line-height: $cellSize - ($cellMargin * 2);
+
+            @media (max-width: $cellSize * 8) {
+              line-height: $cellSizeMin - ($cellMargin * 2);
+              height: $cellSizeMin - ($cellMargin * 2);
+              width: $cellSizeMin - ($cellMargin * 2);
+            }
+          }
+
         }
       }
 
@@ -59,6 +100,9 @@ html {
 
   }
 }
+
+
+
 
 
 .visible-print {
@@ -120,16 +164,16 @@ $material-design-name: 'MaterialIcons-Regular';
   font-feature-settings: 'liga';
 
   // Rules for sizing the icon.
-  &.md-18 {
-    font-size: 18px;
-  }
-  &.md-24 {
-    font-size: 24px;
-  }
-  &.md-36 {
-    font-size: 36px;
-  }
-  &.md-48 {
-    font-size: 48px;
-  }
+  // &.md-18 {
+  //   font-size: 18px;
+  // }
+  // &.md-24 {
+  //   font-size: 24px;
+  // }
+  // &.md-36 {
+  //   font-size: 36px;
+  // }
+  // &.md-48 {
+  //   font-size: 48px;
+  // }
 }
