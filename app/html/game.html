@@ -3,11 +3,13 @@
 	<!-- <h1>Game : {{cells.length}}</h1> -->
 
 	<div class="play-area">
-		<div class="cell" ng-repeat="item in cells" ng-click="chooseTile()">
-			<span class="micons">{{item.name}}</span>
+		<div class="cell" ng-repeat="item in chosenTiles" ng-click="chooseTile(item.id)" ng-class="{ 'can-pick' : !canPick }">
+			<span class="micons">{{ item.name }}</span>
 		</div>
 	</div>
 	
+	<!-- <pre>{{chosenTiles}}</pre> -->
+
 </div>
 
 <p class="visible-print">

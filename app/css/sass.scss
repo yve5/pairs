@@ -1,7 +1,8 @@
 
 /* CSS for SASS work */
 
-$screen-xs: 480px; // Small screen
+$screenXs: 480px; // Small screen
+$mainColor: rgb(251, 240, 217);
 
 html {
   font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
@@ -13,6 +14,7 @@ html {
   width: 100%;
 
   body {
+    background-color: $mainColor;
     vertical-align: middle;
     display: table-cell;
 
@@ -61,7 +63,7 @@ html {
         div.cell {
           height: $cellSize - ($cellMargin * 2);
           width: $cellSize - ($cellMargin * 2);
-          background: greenyellow;
+          background: green;
           margin: $cellMargin;
           border-radius: 8px;
           font-size: 3em;
@@ -76,6 +78,11 @@ html {
             cursor: pointer;
           }
 
+          &.can-pick {
+            background: grey !important;
+            cursor: default !important;
+          }
+
           @media (max-width: $cellSize * 8) {
             height: $cellSizeMin - ($cellMargin * 2);
             width: $cellSizeMin - ($cellMargin * 2);
@@ -85,6 +92,7 @@ html {
 
           span.micons {
             line-height: $cellSize - ($cellMargin * 2);
+            color: $mainColor;
 
             @media (max-width: $cellSize * 8) {
               line-height: $cellSizeMin - ($cellMargin * 2);
