@@ -13,7 +13,6 @@
     "angular-aria": "^1.5.3",
     "angular-messages": "^1.5.3",
     "normalize-css": "normalize.css#^4.1.1",
-    "pixi.js": "~3.0.11",
     "lodash": "^4.13.1",
     "jquery": "^3.0.0",
     "material-design-icons-dist": "^1.1.0"

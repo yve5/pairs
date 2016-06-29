@@ -59,6 +59,7 @@ var htmlEntities = function (input, output) {
           .pipe($.if('*.js', $.replace('\'html/', '\'app/html/')))
           .pipe($.if('*.js', $.uglify()))
           .pipe($.if('*.js', $.rev()))
+          .pipe($.if('*.css',$.replace('../bower_components/material-design-icons-dist/', '../fonts/')))
           .pipe($.if('*.css', $.cssmin()))
           .pipe($.if('*.css', $.rev()))
           .pipe($.if('*.html', $.replace('src="img/', 'src="app/img/')))
@@ -104,12 +105,12 @@ gulp.task('fonts', function () {
   var project = gulp.src(appConfig.app + '/fonts/**/*.{eot,svg,ttf,woff,woff2}')
           .pipe(gulp.dest(appConfig.dist + '/app/fonts'));
 
-  // bootstrap fonts
-  var bootstrap = gulp.src(appConfig.bower + '/bootstrap/fonts/*.{eot,svg,ttf,woff,woff2}')
+  // material fonts
+  var material = gulp.src(appConfig.bower + '/material-design-icons-dist/*.{eot,svg,ttf,woff,woff2}')
           .pipe(gulp.dest(appConfig.dist + '/app/fonts'));
 
   // output
-  return project && bootstrap;
+  return project && material;
 });
 
 
