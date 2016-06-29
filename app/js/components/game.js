@@ -19,8 +19,8 @@ app.controller('game', ['$scope', '$http',
 	  			var iconName = scope.icons[_.random(0, scope.icons.length - 1)];
 
 	          	if (_.isUndefined(_.find(scope.chosenTiles, { 'name': iconName }))) {
-					scope.chosenTiles.push({'id' : iii++, 'name' : iconName});
-					scope.chosenTiles.push({'id' : iii++, 'name' : iconName});
+					scope.chosenTiles.push({'id' : iii++, 'name' : iconName, 'isSelected' : false});
+					scope.chosenTiles.push({'id' : iii++, 'name' : iconName, 'isSelected' : false});
 				}
 			}
 
@@ -33,30 +33,44 @@ app.controller('game', ['$scope', '$http',
 
 	    }
 
-	    scope.chooseTile = function (id) {
+	    scope.chooseTile = function (index) {
 
-	    	// if (scope.canPick) {
-	    		console.log('canPick', id, _.isNull(scope.selection));
+	    	// console.log('debug', scope.chosenTiles[index]);
 
-	    		if (_.isNull(scope.selection)) {
-	    			console.log('selection');
+	    	if (scope.canPick) {
+	    		console.log('canPick', index);
 
-	    			scope.selection = id;
+	    		if (scope.chosenTiles[index].isSelected === false) {
+	    			// console.log('isSelected');
+	    			scope.chosenTiles[index].isSelected = true;
 
 	    			if (_.isNull(scope.firstTile)) {
-	    				scope.firstTile = id;
+	    				scope.firstTile = index;
+
+	    				console.log('debug', scope.firstTile);
 	    			}
 	    			else {
-		    			if (_.isNull(scope.secondTile)) {
-		    				scope.secondTile = id;
-		    				console.log('Hello', 'World');
-		    				scope.canPick = false;
-		    			}
+	    				if (_.isNull(scope.secondTile)) {
+	    					scope.secondTile = index;
+	    					scope.canPick = false;
+
+	    					console.log('debug', scope.secondTile);
+
+
+	    					
+	    					// if (scope.firstTile.name === scope.secondTil.name) {
+	    					// 	console.log('macthing !!!');
+	    					// }
+	    					// else {
+	    					// 	console.log('fail !!!');
+	    					// }
+	    					
+	    				}
 	    			}
 	    		}
 
 	    	// 	scope.canPick = false;
-	    	// }
+	    	}
 
 	    }
 

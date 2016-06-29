@@ -2,7 +2,10 @@
 /* CSS for SASS work */
 
 $screenXs: 480px; // Small screen
-$mainColor: rgb(251, 240, 217);
+// $mainColor: rgb(251, 240, 217);
+$mainColor: #FAEFD7;
+$textColor: #ADA084;
+$hoverColor: #7287AD;
 
 html {
   font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
@@ -63,7 +66,7 @@ html {
         div.cell {
           height: $cellSize - ($cellMargin * 2);
           width: $cellSize - ($cellMargin * 2);
-          background: green;
+          background: $textColor;
           margin: $cellMargin;
           border-radius: 8px;
           font-size: 3em;
@@ -73,14 +76,14 @@ html {
           transition: background 1000ms;
 
           &:hover {
-            background: orange;
+            background: $hoverColor;
             transition: none;
             cursor: pointer;
           }
 
           &.can-pick {
-            background: grey !important;
-            cursor: default !important;
+            background: #C7C197;
+            cursor: default;
           }
 
           @media (max-width: $cellSize * 8) {
@@ -94,18 +97,19 @@ html {
             line-height: $cellSize - ($cellMargin * 2);
             color: $mainColor;
 
+            @media print {
+              color: #aaa;
+            }
+
             @media (max-width: $cellSize * 8) {
               line-height: $cellSizeMin - ($cellMargin * 2);
               height: $cellSizeMin - ($cellMargin * 2);
               width: $cellSizeMin - ($cellMargin * 2);
             }
           }
-
         }
       }
-
     }
-
   }
 }
 

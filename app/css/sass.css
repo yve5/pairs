@@ -8,7 +8,7 @@ html {
 }
 
 html body {
-  background-color: #fbf0d9;
+  background-color: #FAEFD7;
   vertical-align: middle;
   display: table-cell;
 }
@@ -49,7 +49,7 @@ html body div.container div.play-area {
 html body div.container div.play-area div.cell {
   height: 92px;
   width: 92px;
-  background: green;
+  background: #ADA084;
   margin: 4px;
   border-radius: 8px;
   font-size: 3em;
@@ -58,14 +58,14 @@ html body div.container div.play-area div.cell {
 }
 
 html body div.container div.play-area div.cell:hover {
-  background: orange;
+  background: #7287AD;
   transition: none;
   cursor: pointer;
 }
 
 html body div.container div.play-area div.cell.can-pick {
-  background: grey !important;
-  cursor: default !important;
+  background: #C7C197;
+  cursor: default;
 }
 
 @media (max-width: 800px) {
@@ -78,7 +78,13 @@ html body div.container div.play-area div.cell.can-pick {
 
 html body div.container div.play-area div.cell span.micons {
   line-height: 92px;
-  color: #fbf0d9;
+  color: #FAEFD7;
+}
+
+@media print {
+  html body div.container div.play-area div.cell span.micons {
+    color: #aaa;
+  }
 }
 
 @media (max-width: 800px) {

@@ -3,7 +3,7 @@
 	<!-- <h1>Game : {{cells.length}}</h1> -->
 
 	<div class="play-area">
-		<div class="cell" ng-repeat="item in chosenTiles" ng-click="chooseTile(item.id)" ng-class="{ 'can-pick' : !canPick }">
+		<div class="cell" ng-repeat="item in chosenTiles" ng-click="chooseTile($index)" ng-class="{ 'can-pick' : !canPick }">
 			<span class="micons">{{ item.name }}</span>
 		</div>
 	</div>
