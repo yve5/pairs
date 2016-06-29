@@ -8,9 +8,22 @@ html {
 }
 
 html body {
-  background-color: #FAEFD7;
+  background: #FAEFD7;
   vertical-align: middle;
   display: table-cell;
+  transition: background 1000ms;
+}
+
+html body.game-over {
+  background-color: white !important;
+}
+
+html body.game-over div.container {
+  opacity: 0;
+}
+
+html body.game-over div.clicks {
+  opacity: 0;
 }
 
 html body p.browsehappy {
@@ -26,6 +39,8 @@ html body p.browsehappy {
 html body div.container {
   width: 800px;
   margin: auto;
+  opacity: 1;
+  transition: opacity 1000ms;
 }
 
 @media (max-width: 800px) {
@@ -54,7 +69,8 @@ html body div.container div.play-area div.cell {
   border-radius: 8px;
   font-size: 3em;
   float: left;
-  transition: background 1000ms;
+  opacity: 1;
+  transition: opacity 1000ms;
 }
 
 html body div.container div.play-area div.cell:hover {
@@ -63,9 +79,18 @@ html body div.container div.play-area div.cell:hover {
   cursor: pointer;
 }
 
-html body div.container div.play-area div.cell.can-pick {
-  background: #C7C197;
+html body div.container div.play-area div.cell.is-removed {
   cursor: default;
+  opacity: 0;
+}
+
+html body div.container div.play-area div.cell.is-selected {
+  background: #7287AD;
+  cursor: default;
+}
+
+html body div.container div.play-area div.cell.is-selected span.micons {
+  opacity: 1;
 }
 
 @media (max-width: 800px) {
@@ -79,6 +104,8 @@ html body div.container div.play-area div.cell.can-pick {
 html body div.container div.play-area div.cell span.micons {
   line-height: 92px;
   color: #FAEFD7;
+  opacity: 0;
+  transition: opacity 250ms;
 }
 
 @media print {
@@ -93,6 +120,19 @@ html body div.container div.play-area div.cell span.micons {
     height: 72px;
     width: 72px;
   }
+}
+
+html body div.clicks {
+  opacity: 1;
+  transition: opacity 1000ms;
+  background: #ADA084;
+  color: #FAEFD7;
+  border-radius: 40px;
+  line-height: 40px;
+  height: 40px;
+  width: 40px;
+  font-weight: bold;
+  margin: auto;
 }
 
 .visible-print {

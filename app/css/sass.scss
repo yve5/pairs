@@ -2,24 +2,44 @@
 /* CSS for SASS work */
 
 $screenXs: 480px; // Small screen
-// $mainColor: rgb(251, 240, 217);
+
 $mainColor: #FAEFD7;
 $textColor: #ADA084;
 $hoverColor: #7287AD;
 
+$cellSizeMin: 80px;
+$cellSize: 100px;
+$cellMargin: 4px;
+$clicksSize: 40px;
+
+$speed1: 1000ms;
+$speed2: 250ms;
+
 html {
   font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
-  // background: hsl(0, 100%, 80%);
   text-align: center;
   display: table;
-  // color: #888;
   height: 100%;
   width: 100%;
 
   body {
-    background-color: $mainColor;
+    background: $mainColor;
     vertical-align: middle;
     display: table-cell;
+
+    transition: background $speed1;
+
+    &.game-over {
+      background-color: white !important;
+
+      div.container {
+        opacity: 0;
+      }
+
+      div.clicks {
+        opacity: 0;
+      }
+    }
 
     p.browsehappy {
       position: absolute;
@@ -32,23 +52,12 @@ html {
       margin: 0;
     }
 
-    // h1 {
-    //   color: #555; 
-    //   font-size: 2em;
-    //   font-weight: 400;
-
-    //   @media only screen and (max-width: 280px) {
-    //     color: red !important;
-    //   }
-
-    $cellSizeMin: 80px;
-    $cellSize: 100px;
-    $cellMargin: 4px;
-
-
     div.container {
       width: $cellSize * 8;
       margin: auto;
+      opacity: 1;
+
+      transition: opacity $speed1;
 
       @media (max-width: $cellSize * 8) {
         width: $cellSizeMin * 4;
@@ -71,9 +80,9 @@ html {
           border-radius: 8px;
           font-size: 3em;
           float: left;
+          opacity: 1;
 
-          // box-shadow: 0 4px 6px -5px black;
-          transition: background 1000ms;
+          transition: opacity $speed1;
 
           &:hover {
             background: $hoverColor;
@@ -81,10 +90,20 @@ html {
             cursor: pointer;
           }
 
-          &.can-pick {
-            background: #C7C197;
+          &.is-removed {
             cursor: default;
+            opacity: 0;
           }
+
+          &.is-selected {
+            background: $hoverColor;
+            cursor: default;
+
+            span.micons {
+              opacity: 1;
+            }
+          }
+
 
           @media (max-width: $cellSize * 8) {
             height: $cellSizeMin - ($cellMargin * 2);
@@ -96,6 +115,9 @@ html {
           span.micons {
             line-height: $cellSize - ($cellMargin * 2);
             color: $mainColor;
+            opacity: 0;
+
+            transition: opacity $speed2;
 
             @media print {
               color: #aaa;
@@ -107,13 +129,27 @@ html {
               width: $cellSizeMin - ($cellMargin * 2);
             }
           }
+
         }
       }
     }
+
+    div.clicks {
+      opacity: 1;
+      transition: opacity $speed1;
+
+      background: $textColor;
+      color: $mainColor;
+
+      border-radius: $clicksSize;
+      line-height: $clicksSize;
+      height: $clicksSize;
+      width: $clicksSize;
+      font-weight: bold;
+      margin: auto;
+    }
   }
 }
-
-
 
 
 
@@ -124,7 +160,6 @@ html {
     display: block !important;
   }
 }
-
 
 
 
