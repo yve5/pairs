@@ -1,3 +1,16 @@
+
+
+
+<div class="header">
+	
+	<div>{{ clicks }}</div>
+	<div><a href="https://www.github.com/yve5/pairs">?</a></div>
+	<!-- <div><span class="micons">volume_mute</span></div> -->
+
+</div>
+
+
+
 <div class="container">
 	<div class="play-area">
 		<div class="cell" ng-repeat="item in tiles" ng-click="chooseTile($index)" ng-class="{ 'is-selected' : item.isSelected, 'is-removed' : item.isRemoved }">
@@ -5,8 +18,6 @@
 		</div>
 	</div>
 </div>
-
-<div class="clicks">{{ clicks }}</div>
 
 <p class="visible-print">
 	Created by Yve5 [<a href="https://www.github.com/yve5">github.com/yve5</a>]

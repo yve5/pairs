@@ -11,18 +11,14 @@ html body {
   background: #FAEFD7;
   vertical-align: middle;
   display: table-cell;
-  transition: background 1000ms;
+  transition: opacity 1000ms;
 }
 
 html body.game-over {
   background-color: white !important;
 }
 
-html body.game-over div.container {
-  opacity: 0;
-}
-
-html body.game-over div.clicks {
+html body.game-over div.header, html body.game-over div.container {
   opacity: 0;
 }
 
@@ -122,17 +118,45 @@ html body div.container div.play-area div.cell span.micons {
   }
 }
 
-html body div.clicks {
-  opacity: 1;
+html body div.header {
+  height: 42px;
+  width: 800px;
+  margin: auto;
   transition: opacity 1000ms;
+  opacity: 1;
+}
+
+@media (max-width: 800px) {
+  html body div.header {
+    width: 320px;
+    margin-top: 2px;
+  }
+}
+
+html body div.header div {
   background: #ADA084;
+  border-radius: 8px;
   color: #FAEFD7;
-  border-radius: 40px;
+  float: left;
   line-height: 40px;
   height: 40px;
   width: 40px;
   font-weight: bold;
-  margin: auto;
+  margin: 0 5px;
+}
+
+html body div.header div a {
+  text-decoration: none;
+  border-radius: 8px;
+  color: #FAEFD7;
+  display: block;
+  height: 100%;
+  width: 100%;
+  transition: background 250ms;
+}
+
+html body div.header div a:hover {
+  background: #7287AD;
 }
 
 .visible-print {

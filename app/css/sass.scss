@@ -27,16 +27,12 @@ html {
     vertical-align: middle;
     display: table-cell;
 
-    transition: background $speed1;
+    transition: opacity $speed1;
 
     &.game-over {
       background-color: white !important;
 
-      div.container {
-        opacity: 0;
-      }
-
-      div.clicks {
+      div.header, div.container {
         opacity: 0;
       }
     }
@@ -108,7 +104,6 @@ html {
           @media (max-width: $cellSize * 8) {
             height: $cellSizeMin - ($cellMargin * 2);
             width: $cellSizeMin - ($cellMargin * 2);
-            // box-shadow: none;
             font-size: 2em;
           }
 
@@ -134,25 +129,55 @@ html {
       }
     }
 
-    div.clicks {
-      opacity: 1;
-      transition: opacity $speed1;
-
-      background: $textColor;
-      color: $mainColor;
-
-      border-radius: $clicksSize;
-      line-height: $clicksSize;
-      height: $clicksSize;
-      width: $clicksSize;
-      font-weight: bold;
+    div.header {
+      height: ($cellSizeMin / 2) + 2;
+      width: $cellSize * 8;
       margin: auto;
+
+      transition: opacity $speed1;
+      opacity: 1;
+
+
+      @media (max-width: $cellSize * 8) {
+        width: $cellSizeMin * 4;
+        margin-top: 2px;
+      }
+
+
+      div {
+        background: $textColor;
+        border-radius: 8px;
+        color: $mainColor;
+        float: left;
+
+        line-height: $cellSizeMin / 2;;
+        height: $cellSizeMin / 2;
+        width: $cellSizeMin / 2;;
+        font-weight: bold;
+        margin: 0 5px;
+
+        a {
+          text-decoration: none;
+          border-radius: 8px;
+          color: $mainColor;
+          display: block;
+          height: 100%;
+          width: 100%;
+
+          transition: background $speed2;
+
+          &:hover {
+            background: $hoverColor;
+          }
+        }
+      }
     }
   }
 }
 
 
 
+// print layout
 .visible-print {
   display: none !important;
 
@@ -209,18 +234,4 @@ $material-design-name: 'MaterialIcons-Regular';
 
   // Support for IE.
   font-feature-settings: 'liga';
-
-  // Rules for sizing the icon.
-  // &.md-18 {
-  //   font-size: 18px;
-  // }
-  // &.md-24 {
-  //   font-size: 24px;
-  // }
-  // &.md-36 {
-  //   font-size: 36px;
-  // }
-  // &.md-48 {
-  //   font-size: 48px;
-  // }
 }

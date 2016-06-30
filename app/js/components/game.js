@@ -7,7 +7,7 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope',
 
 		scope.init = function () {
 			// Google material glyphicons
-			scope.icons = ['face', 'accessibility', 'extension', 'fingerprint', 'favorite', 'gavel', 'hourglass_full', 'motorcycle', 'polymer', 'settings_input_hdmi', 'shopping_cart', 'thumb_up', 'work', 'album', 'chat_bubble', 'phone', 'vpn_key', 'drafts', 'weekend', 'games', 'radio', 'remove_circle', 'sd_card', 'attach_file', 'cloud', 'keyboard', 'mouse', 'security', 'watch', 'wb_sunny', 'tag_faces', 'tune', 'directions_car', 'directions_run', 'directions_subway', 'map', 'restaurant', 'golf_course', 'cake', 'public', 'star', 'whatshot', 'local_bar', 'notifications', 'school', 'fitness_center', 'all_inclusive', 'beach_access'];
+			scope.icons = ['face', 'extension', 'favorite', 'hourglass_empty', 'motorcycle', 'polymer', 'settings_input_hdmi', 'shopping_cart', 'thumb_up', 'work', 'album', 'chat', 'phone', 'vpn_key', 'drafts', 'games', 'radio', 'remove_circle', 'sd_card', 'attach_file', 'cloud', 'keyboard', 'mouse', 'watch', 'wb_sunny', 'tune', 'directions_car', 'directions_run', 'directions_subway', 'map', 'restaurant', 'golf_course', 'cake', 'public', 'star', 'whatshot', 'local_bar', 'notifications', 'school', 'all_inclusive', 'build', 'account_balance', 'https', 'room', 'payment', 'pets', 'watch_later', 'beach_access'];
 
 			// plain variable
 			scope.canPick 		= true;
@@ -16,6 +16,7 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope',
 			scope.second 		= null;
 			scope.time  		= 1000;
 			scope.total			= 48;
+			// scope.total			= 2; // TODO
 			scope.clicks		= 0;
 			rootScope.gameOver 	= false;
 
