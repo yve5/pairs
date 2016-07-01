@@ -104,6 +104,13 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope',
 	    	timeout(scope.init, scope.time);
 	    }
 
+	    scope.mute = function () {
+
+	    	console.log('Hello', 'World');
+
+	    }
+
+
 		scope.init();
 
 }]);

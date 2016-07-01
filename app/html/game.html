@@ -1,15 +1,18 @@
-
-
+<!-- 
+<audio autoplay="" controls="" loop="">
+  <source src="doc/alone.ogg" type="audio/ogg">
+</audio>
+ -->
 
 <div class="header">
-	
 	<div>{{ clicks }}</div>
 	<div><a href="https://www.github.com/yve5/pairs">?</a></div>
-	<!-- <div><span class="micons">volume_mute</span></div> -->
-
+	<div ng-click="mute()">
+		<span class="micons">volume_off</span>
+		<!-- volume_up -->
+		<!-- volume_mute -->
+	</div>
 </div>
-
-
 
 <div class="container">
 	<div class="play-area">
