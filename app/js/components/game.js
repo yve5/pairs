@@ -16,7 +16,6 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope',
 			scope.second 		= null;
 			scope.time  		= 1000;
 			scope.total			= 48;
-			// scope.total			= 2; // TODO
 			scope.clicks		= 0;
 			rootScope.gameOver 	= false;
 

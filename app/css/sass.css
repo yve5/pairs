@@ -11,7 +11,7 @@ html body {
   background: #FAEFD7;
   vertical-align: middle;
   display: table-cell;
-  transition: opacity 1000ms;
+  transition: background 1000ms;
 }
 
 html body.game-over {
@@ -66,11 +66,11 @@ html body div.container div.play-area div.cell {
   font-size: 3em;
   float: left;
   opacity: 1;
-  transition: opacity 1000ms;
+  transition: opacity 1000ms, background 1000ms;
 }
 
 html body div.container div.play-area div.cell:hover {
-  background: #7287AD;
+  background: #C7BEAB;
   transition: none;
   cursor: pointer;
 }
@@ -81,7 +81,7 @@ html body div.container div.play-area div.cell.is-removed {
 }
 
 html body div.container div.play-area div.cell.is-selected {
-  background: #7287AD;
+  background: #7387AD;
   cursor: default;
 }
 
@@ -122,8 +122,8 @@ html body div.header {
   height: 42px;
   width: 800px;
   margin: auto;
-  transition: opacity 1000ms;
   opacity: 1;
+  transition: opacity 1000ms;
 }
 
 @media (max-width: 800px) {
@@ -143,6 +143,12 @@ html body div.header div {
   width: 40px;
   font-weight: bold;
   margin: 0 5px;
+  transition: background 250ms;
+}
+
+html body div.header div:hover {
+  background: #C7BEAB;
+  cursor: default;
 }
 
 html body div.header div a {
@@ -152,11 +158,6 @@ html body div.header div a {
   display: block;
   height: 100%;
   width: 100%;
-  transition: background 250ms;
-}
-
-html body div.header div a:hover {
-  background: #7287AD;
 }
 
 .visible-print {

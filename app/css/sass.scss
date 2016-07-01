@@ -1,11 +1,22 @@
 
 /* CSS for SASS work */
 
+
+// #FAEFD7 default
+// #7A7569
+// #FBD88C
+// #7A6A45
+// #C7BEAB
+// #7387AD
+// #D7E3FA
+
+
 $screenXs: 480px; // Small screen
 
 $mainColor: #FAEFD7;
 $textColor: #ADA084;
-$hoverColor: #7287AD;
+$selectColor: #7387AD;
+$hoverColor: #C7BEAB;
 
 $cellSizeMin: 80px;
 $cellSize: 100px;
@@ -27,7 +38,7 @@ html {
     vertical-align: middle;
     display: table-cell;
 
-    transition: opacity $speed1;
+    transition: background $speed1;
 
     &.game-over {
       background-color: white !important;
@@ -78,7 +89,7 @@ html {
           float: left;
           opacity: 1;
 
-          transition: opacity $speed1;
+          transition: opacity $speed1, background $speed1;
 
           &:hover {
             background: $hoverColor;
@@ -92,7 +103,7 @@ html {
           }
 
           &.is-selected {
-            background: $hoverColor;
+            background: $selectColor;
             cursor: default;
 
             span.micons {
@@ -133,17 +144,15 @@ html {
       height: ($cellSizeMin / 2) + 2;
       width: $cellSize * 8;
       margin: auto;
-
-      transition: opacity $speed1;
       opacity: 1;
 
+      transition: opacity $speed1;
 
       @media (max-width: $cellSize * 8) {
         width: $cellSizeMin * 4;
         margin-top: 2px;
       }
-
-
+      
       div {
         background: $textColor;
         border-radius: 8px;
@@ -156,6 +165,13 @@ html {
         font-weight: bold;
         margin: 0 5px;
 
+        transition: background $speed2;
+
+        &:hover {
+          background: $hoverColor;
+          cursor: default;
+        }
+
         a {
           text-decoration: none;
           border-radius: 8px;
@@ -163,12 +179,6 @@ html {
           display: block;
           height: 100%;
           width: 100%;
-
-          transition: background $speed2;
-
-          &:hover {
-            background: $hoverColor;
-          }
         }
       }
     }
