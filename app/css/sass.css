@@ -160,6 +160,13 @@ html body div.header div a {
   width: 100%;
 }
 
+html body div.header div span {
+  line-height: 40px;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
 .visible-print {
   display: none !important;
 }

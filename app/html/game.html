@@ -1,16 +1,17 @@
-<!-- 
-<audio autoplay="" controls="" loop="">
-  <source src="doc/alone.ogg" type="audio/ogg">
+<audio autoplay="" controls="" loop="" ng-model="song">
+  <source src="doc/alone.ogg" type="audio/ogg" ng-model="aze">
 </audio>
+
+<!-- 
+volume_up volume_mute
  -->
 
 <div class="header">
 	<div>{{ clicks }}</div>
-	<div><a href="https://www.github.com/yve5/pairs">?</a></div>
-	<div ng-click="mute()">
-		<span class="micons">volume_off</span>
-		<!-- volume_up -->
-		<!-- volume_mute -->
+	<div><a href="https://www.github.com/yve5/pairs" target="_blank">?</a></div>
+	<div ng-click="pause()">
+		<span class="micons" ng-hide="isMuted">volume_up</span>
+		<span class="micons" ng-show="isMuted">volume_off</span>
 	</div>
 </div>
 

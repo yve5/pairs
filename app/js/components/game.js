@@ -5,6 +5,7 @@ var app = angular.module('app');
 app.controller('game', ['$scope', '$http', '$timeout', '$rootScope', 
 	function (scope, http, timeout, rootScope) {
 
+		// Game
 		scope.init = function () {
 			// Google material glyphicons
 			scope.icons = ['face', 'extension', 'favorite', 'hourglass_empty', 'motorcycle', 'polymer', 'settings_input_hdmi', 'shopping_cart', 'thumb_up', 'work', 'album', 'chat', 'phone', 'vpn_key', 'drafts', 'games', 'radio', 'remove_circle', 'sd_card', 'attach_file', 'cloud', 'keyboard', 'mouse', 'watch', 'wb_sunny', 'tune', 'directions_car', 'directions_run', 'directions_subway', 'map', 'restaurant', 'golf_course', 'cake', 'public', 'star', 'whatshot', 'local_bar', 'notifications', 'school', 'all_inclusive', 'build', 'account_balance', 'https', 'room', 'payment', 'pets', 'watch_later', 'beach_access'];
@@ -104,13 +105,19 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope',
 	    	timeout(scope.init, scope.time);
 	    }
 
-	    scope.mute = function () {
-
-	    	console.log('Hello', 'World');
-
-	    }
-
-
 		scope.init();
+
+
+		// Music
+		scope.isMuted = false;
+
+	    scope.pause = function () {
+	    	scope.isMuted = !scope.isMuted;
+	    	console.log('isMuted', scope.isMuted);
+
+	    	// scope.song.pause();
+
+	    	console.log('debug', scope.aze);
+	    }
 
 }]);

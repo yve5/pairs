@@ -159,9 +159,9 @@ html {
         color: $mainColor;
         float: left;
 
-        line-height: $cellSizeMin / 2;;
+        line-height: $cellSizeMin / 2;
         height: $cellSizeMin / 2;
-        width: $cellSizeMin / 2;;
+        width: $cellSizeMin / 2;
         font-weight: bold;
         margin: 0 5px;
 
@@ -177,6 +177,18 @@ html {
           border-radius: 8px;
           color: $mainColor;
           display: block;
+          height: 100%;
+          width: 100%;
+        }
+
+        span {
+          // border: 1px solid red;
+
+          // font-size: 1.5em;
+          line-height: $cellSizeMin / 2;
+
+          cursor: pointer;
+
           height: 100%;
           width: 100%;
         }
