@@ -177,6 +177,16 @@ html body div.header div span {
   }
 }
 
+.hidden-print {
+  display: block !important;
+}
+
+@media print {
+  .hidden-print {
+    display: none !important;
+  }
+}
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;

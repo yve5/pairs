@@ -183,7 +183,6 @@ html {
 
         span {
           // border: 1px solid red;
-
           // font-size: 1.5em;
           line-height: $cellSizeMin / 2;
 
@@ -205,6 +204,14 @@ html {
 
   @media print {
     display: block !important;
+  }
+}
+
+.hidden-print {
+  display: block !important;
+
+  @media print {
+    display: none !important;
   }
 }
 

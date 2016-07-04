@@ -1,12 +1,9 @@
-<audio autoplay="" controls="" loop="" ng-model="song">
+<audio controls="" loop="">
   <source src="doc/alone.ogg" type="audio/ogg" ng-model="aze">
 </audio>
+<!-- volume_up volume_mute -->
 
-<!-- 
-volume_up volume_mute
- -->
-
-<div class="header">
+<div class="header hidden-print">
 	<div>{{ clicks }}</div>
 	<div><a href="https://www.github.com/yve5/pairs" target="_blank">?</a></div>
 	<div ng-click="pause()">
@@ -15,14 +12,10 @@ volume_up volume_mute
 	</div>
 </div>
 
-<div class="container">
+<div class="container hidden-print">
 	<div class="play-area">
 		<div class="cell" ng-repeat="item in tiles" ng-click="chooseTile($index)" ng-class="{ 'is-selected' : item.isSelected, 'is-removed' : item.isRemoved }">
 			<span class="micons">{{ item.name }}</span>
 		</div>
 	</div>
 </div>
-
-<p class="visible-print">
-	Created by Yve5 [<a href="https://www.github.com/yve5">github.com/yve5</a>]
-</p>
