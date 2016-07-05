@@ -1,18 +1,22 @@
 'use strict';
 
-
 var app = angular.module('app');
 
-
-app.directive('game', ['$timeout', function ($timeout) {
+app.directive('audioPlayer', ['$timeout', function ($timeout) {
   return {
     restrict: 'ACE',
-    require: 'ngModel',
-    // templateUrl: 'html/game.html',
+    template: '<audio controlsa="" loop=""><source src="doc/alone.ogg" type="audio/ogg"></audio>',
     link: function (scope, elm, attrs, ngModel) {
+        var audioTag = elm[0].childNodes[0];
 
-      console.log('Hello World');
-
+        scope.$watch('isPaused', function (newVal, oldVal) {
+            if (newVal) {
+                audioTag.pause();
+            }
+            else {
+                audioTag.play();
+            }
+        });
     }
   };
 }]);

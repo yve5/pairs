@@ -152,15 +152,10 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope',
 
 
 		// music
-		scope.isMuted = false;
+		scope.isPaused = false;
 
 	    scope.pause = function () {
-	    	scope.isMuted = !scope.isMuted;
-	    	console.log('isMuted', scope.isMuted);
-
-	    	// scope.song.pause();
-
-	    	console.log('debug', scope.aze);
+	    	scope.isPaused = !scope.isPaused;
 	    }
 
 }]);
