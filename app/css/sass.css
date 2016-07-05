@@ -52,7 +52,7 @@ html body div.container div.play-area {
 
 @media (max-width: 800px) {
   html body div.container div.play-area {
-    height: 960px;
+    height: 480px;
     width: 320px;
   }
 }

@@ -75,7 +75,7 @@ html {
         width: $cellSize * 8;
 
         @media (max-width: $cellSize * 8) {
-          height: $cellSizeMin * 12;
+          height: $cellSizeMin * 6;
           width: $cellSizeMin * 4;
         }
 

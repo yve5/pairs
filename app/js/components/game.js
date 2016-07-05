@@ -5,8 +5,8 @@ var app = angular.module('app');
 app.controller('game', ['$scope', '$http', '$timeout', '$rootScope', 
 	function (scope, http, timeout, rootScope) {
 
-		// Game
-		scope.init = function () {
+		// game
+		scope.init = function (localTotal) {
 			// Google material glyphicons
 			scope.icons = ['face', 'extension', 'favorite', 'hourglass_empty', 'motorcycle', 'polymer', 'settings_input_hdmi', 'shopping_cart', 'thumb_up', 'work', 'album', 'chat', 'phone', 'vpn_key', 'drafts', 'games', 'radio', 'remove_circle', 'sd_card', 'attach_file', 'cloud', 'keyboard', 'mouse', 'watch', 'wb_sunny', 'tune', 'directions_car', 'directions_run', 'directions_subway', 'map', 'restaurant', 'golf_course', 'cake', 'public', 'star', 'whatshot', 'local_bar', 'notifications', 'school', 'all_inclusive', 'build', 'account_balance', 'https', 'room', 'payment', 'pets', 'watch_later', 'beach_access'];
 
@@ -16,9 +16,16 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope',
 			scope.first 		= null;
 			scope.second 		= null;
 			scope.time  		= 1000;
-			scope.total			= 48;
 			scope.clicks		= 0;
 			rootScope.gameOver 	= false;
+
+
+			// number of tiles
+			scope.total = localTotal;
+			if (_.isUndefined(scope.total)) {
+				scope.total = scope.largeTotal;
+			}
+
 
 	  		// choose 24 random tile images
 	  		scope.tiles = [];
@@ -102,13 +109,49 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope',
 
 	    scope.gameIsOver = function () {
 	    	rootScope.gameOver = true;
-	    	timeout(scope.init, scope.time);
+	    	timeout(scope.tryAgain, scope.time);
 	    }
 
-		scope.init();
+	    scope.tryAgain = function () {
+	    	if (_.isUndefined(scope.win) || scope.win.width > 800) {
+	    		scope.init(scope.largeTotal);
+	    	}
+	    	else {
+	    		scope.init(scope.smallTotal);
+	    	}
+	    }
+		
+	    // former first init
+		// scope.init();
+		scope.smallTotal = 24;
+		scope.largeTotal = 48;
+
+		// on resize
+		scope.$watch('win.width', function (newVal, oldVal) {
+			// first init
+			if (newVal === oldVal) {
+				if (newVal <= 800) {
+					scope.init(scope.smallTotal);
+				}
+				else {
+					scope.init(scope.largeTotal);
+				}
+			}
+
+			// init play area when screen is different...
+			if (newVal <= 800 && oldVal > 800) {
+				// ... small screen ...
+				scope.init(scope.smallTotal);
+			}
+
+			if (newVal > 800 && oldVal <= 800) {
+				// ... or large screen
+				scope.init(scope.largeTotal);
+			}
+		});
 
 
-		// Music
+		// music
 		scope.isMuted = false;
 
 	    scope.pause = function () {
