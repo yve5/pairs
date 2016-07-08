@@ -37,6 +37,8 @@ html body div.container {
   margin: auto;
   opacity: 1;
   transition: opacity 1000ms;
+  height: 600px;
+  width: 800px;
 }
 
 @media (max-width: 800px) {
@@ -45,13 +47,8 @@ html body div.container {
   }
 }
 
-html body div.container div.play-area {
-  height: 600px;
-  width: 800px;
-}
-
 @media (max-width: 800px) {
-  html body div.container div.play-area {
+  html body div.container {
     height: 480px;
     width: 320px;
   }

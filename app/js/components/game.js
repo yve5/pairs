@@ -2,8 +2,9 @@
 
 var app = angular.module('app');
 
-app.controller('game', ['$scope', '$http', '$timeout', '$rootScope', '$window', 
-	function (scope, http, timeout, rootScope, window) {
+app.controller('game', ['$scope', '$http', '$timeout', '$rootScope', '$window', 'common', 
+	function (scope, http, timeout, rootScope, window, common) {
+		common.setSection('home');
 
 		// game
 		scope.init = function (localTotal) {
@@ -16,7 +17,6 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope', '$window',
 			scope.first 		= null;
 			scope.second 		= null;
 			scope.time  		= 1000;
-			scope.clicks		= 0;
 			rootScope.gameOver 	= false;
 
 
@@ -46,11 +46,9 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope', '$window',
 
 	    scope.chooseTile = function (index) {
 	    	if (scope.canPick) {
-	    		scope.isFirstInteraction();
-
 	    		if (scope.tiles[index].isSelected === false && scope.tiles[index].isRemoved === false) {
 	    			scope.tiles[index].isSelected = true;
-	    			scope.clicks++;
+	    			common.setClicks(common.getClicks() + 1);
 
 	    			if (_.isNull(scope.first)) {
 	    				scope.first = index;
@@ -150,23 +148,6 @@ app.controller('game', ['$scope', '$http', '$timeout', '$rootScope', '$window',
 				scope.init(scope.largeTotal);
 			}
 		});
-
-
-		// music
-		scope.isPaused = true;
-	    scope.firstPlay = false;
-
-	    scope.pause = function () {
-	    	scope.isPaused = !scope.isPaused;
-	    }
-	    
-	    // music is automatically played after the first tile click event. 
-	    scope.isFirstInteraction = function () {
-            if (scope.firstPlay === false) {
-            	scope.firstPlay = true;
-            	scope.isPaused = false;
-            }
-	    }
 
 	}
 ]);
