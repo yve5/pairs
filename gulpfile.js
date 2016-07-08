@@ -57,12 +57,13 @@ var htmlEntities = function (input, output) {
   return gulp.src(input)
           .pipe($.useref())
           .pipe($.if('*.js', $.replace('\'html/', '\'app/html/')))
+          .pipe($.if('*.js', $.replace('src="doc/', 'src="app/doc/')))
           .pipe($.if('*.js', $.uglify()))
           .pipe($.if('*.js', $.rev()))
           .pipe($.if('*.css',$.replace('../bower_components/material-design-icons-dist/', '../fonts/')))
           .pipe($.if('*.css', $.cssmin()))
           .pipe($.if('*.css', $.rev()))
-          .pipe($.if('*.html', $.replace('src="img/', 'src="app/img/')))
+          .pipe($.if('*.html', $.replace('src="doc/', 'src="app/doc/')))
           .pipe($.if('*.html', $.htmlmin({
             conservativeCollapse: true,
             collapseWhitespace: true,
@@ -81,7 +82,7 @@ gulp.task('views', ['scss'], function () {
 });
 
 
-// images
+// documents
 gulp.task('favicon', function () {
   return gulp.src([appConfig.app + '/favicon.ico'])
           .pipe($.rev())
@@ -93,9 +94,9 @@ gulp.task('favicon', function () {
           .pipe(gulp.dest(appConfig.dist));
 });
 
-gulp.task('images', function () {
-  return gulp.src(appConfig.app + '/img/**/*')
-          .pipe(gulp.dest(appConfig.dist + '/app/img'));
+gulp.task('documents', function () {
+  return gulp.src(appConfig.app + '/doc/**/*')
+          .pipe(gulp.dest(appConfig.dist + '/app/doc'));
 });
 
 
@@ -122,7 +123,7 @@ gulp.task('clean', function () {
 
 // build app
 gulp.task('build', function () {
-  runs('clean', 'html', 'views', 'images', 'favicon', 'fonts', 'dist');
+  runs('clean', 'html', 'views', 'documents', 'favicon', 'fonts', 'dist');
 });
 
 
@@ -151,7 +152,7 @@ gulp.task('serve', ['scss'], function () {
     appConfig.app + '/*.html',
     appConfig.app + '/html/*.html',
     appConfig.app + '/js/**/*.js',
-    appConfig.app + '/img/**/*',
+    appConfig.app + '/doc/**/*',
     appConfig.app + '/fonts/**/*',
     appConfig.app + '/css/**/*.css'
   ]).on('change', reload);

@@ -4,7 +4,7 @@ var app = angular.module('app');
 
 app.directive('audioPlayer', [function () {
   return {
-    template: '<audio loop=""><source src="src/alone.ogg" type="audio/ogg"></audio>',
+    template: '<audio loop=""><source src="doc/alone.ogg" type="audio/ogg"></audio>',
     restrict: 'ACE',
     scope: {
         pause: '='

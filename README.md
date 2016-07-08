@@ -1,4 +1,4 @@
-# Pairs Game 
+# Pairs Game
 
 
 ## Installation
@@ -49,6 +49,9 @@ Type the command line **gulp** in terminal.
 | **http://localhost:1337** | Application interface              |
 | **http://localhost:3001** | Configuration interface            |
 
+## Soundtrack
+
+[kojodi · Alone In Paris - Extended Version](https://soundcloud.com/kojodi/alone-in-paris-extended-version?in=kojodi/sets/soundtrack-works)
 
 ## License
 
