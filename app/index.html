@@ -26,11 +26,6 @@
     <app-header></app-header>
     <ng-view></ng-view>
 
-    <!-- build:remove -->
-    <!-- The dev-bar will be removed during app build. -->
-    <devbar/>
-    <!-- endbuild -->
-
     <noscript>Please active JavaScript in your webbrowser !</noscript>
 
     <script>
@@ -59,6 +54,10 @@
     <script src="js/shared/audio.js"></script>
     <script src="js/shared/header.js"></script>
     <script src="js/shared/common.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:remove -->
+    <devbar/>
     <script src="js/shared/devbar.js"></script>
     <!-- endbuild -->
   </body>
