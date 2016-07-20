@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Pairs Game</title>
-    <meta name="description" content="Pairs, Game, Angular, JS">
+    <meta name="description" content="Pairs, Game, AngularJS, JavaScript, JS">
     <meta name="viewport" content="width=device-width">
     <link rel="icon" href="favicon.ico" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <!-- build:css(.) app/css/vendor.css -->
-    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
     <!-- endbuild -->
     <!-- build:css app/css/main.css -->
@@ -18,9 +17,7 @@
     <!-- endbuild -->
   </head>
   <body ng-app="app" ng-class="{ 'game-over' : gameOver }">
-    <!--[if lte IE 8]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+    <!--[if lte IE 8]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
     <on-resize></on-resize>
     <app-header></app-header>
@@ -57,7 +54,7 @@
     <!-- endbuild -->
 
     <!-- build:remove -->
-    <devbar/>
+    <devbar></devbar>
     <script src="js/shared/devbar.js"></script>
     <!-- endbuild -->
   </body>
