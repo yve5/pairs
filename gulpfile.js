@@ -13,7 +13,7 @@ var Karma   = require('karma').Server;
 
 // configurable paths
 var appConfig = {
-  bower: 'bower_components',
+  mods: 'node_modules',
   dist: 'dist',
   app: 'app'
 };
@@ -60,7 +60,7 @@ var htmlEntities = function (input, output) {
           .pipe($.if('*.js', $.replace('src="doc/', 'src="app/doc/')))
           .pipe($.if('*.js', $.uglify()))
           .pipe($.if('*.js', $.rev()))
-          .pipe($.if('*.css',$.replace('../bower_components/material-design-icons-dist/', '../fonts/')))
+          .pipe($.if('*.css',$.replace('../node_modules/material-design-icons/iconfont', '../fonts/')))
           .pipe($.if('*.css', $.cssmin()))
           .pipe($.if('*.css', $.rev()))
           .pipe($.if('*.html', $.replace('src="doc/', 'src="app/doc/')))
@@ -107,7 +107,7 @@ gulp.task('fonts', function () {
           .pipe(gulp.dest(appConfig.dist + '/app/fonts'));
 
   // material fonts
-  var material = gulp.src(appConfig.bower + '/material-design-icons-dist/*.{eot,svg,ttf,woff,woff2}')
+  var material = gulp.src(appConfig.mods + '/material-design-icons-dist/*.{eot,svg,ttf,woff,woff2}')
           .pipe(gulp.dest(appConfig.dist + '/app/fonts'));
 
   // output
@@ -143,7 +143,7 @@ gulp.task('serve', ['scss'], function () {
     server: {
       baseDir: [appConfig.app],
       routes: {
-        '/bower_components': appConfig.bower
+        '/node_modules': appConfig.mods
       }
     }
   });
